@@ -1,0 +1,161 @@
+\documentclass[a0paper,
+landscape,
+%portrait,
+fontscale=0.332,
+%margin=4cm,
+%paperwidth=15truecm,
+%paperheight=9truecm,
+debug,
+hyperref={pdfpagelabels=false}]{baposter}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[vlined]{algorithm2e}
+\usepackage{times}
+\usepackage{calc}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+\usepackage{ae}
+\usepackage{caption}
+
+\usepackage{helvet}
+\renewcommand\familydefault{phv}
+
+\usepackage{paralist}
+
+\setdefaultitem{\textcolor{unibablueI}{$\blacktriangleright$}}%
+{\textcolor{unibablueII}{$\triangleright$}}%
+{\textcolor{unibablueIII}{-}}{\textperiodcentered}
+
+\setdefaultenum{\color{unibablueI}I.}{\color{unibablueII}a)}{i.}{A.}
+
+\graphicspath{{images/}}
+
+
+%#1 Datei (liegt im image Verzeichnis)
+%#2 Beschriftung
+%#3 Label fuer Referenzierung
+%#4 Skalierungsfaktor
+\newcommand{\scaletikzimage}[4]{%
+\begin{minipage}{\textwidth}%
+\centering%
+\scalebox{#4}{%
+\input{images/#1.tikz}}%
+\vspace{-1em}%
+\captionof{figure}{#2}%
+\label{#3}%
+\end{minipage}
+}
+
+%#1 Breite
+%#2 pdf-Datei (liegt im image Verzeichnis)
+%#3 Beschriftung
+%#4 Label fuer Referenzierung
+\newcommand{\image}[4]{%
+\begin{minipage}{#1}%
+\centering%
+\includegraphics[width=\textwidth]{images/#2}%
+\vspace{-1em}%
+\captionof{figure}{#3}%
+\label{#4}%
+\end{minipage}%
+}
+
+\definecolor{BrickRed}{RGB}{147,1,28}
+\newcommand{\todo}[1]{%
+%\colorbox{BrickRed}{\textcolor{white}{\textbf{%
+#1%
+%}}}%
+}
+\usepackage{nicefrac}
+
+\newcommand{\colred}[1]{%
+\textcolor{nounibaredI}{\textbf{#1}}%
+}
+
+\newcommand{\colblue}[1]{%
+\textcolor{unibablueI}{#1}%
+}
+
+\begin{document}
+
+\begin{poster}{
+  %grid=true,
+  background=plain,%shadelr,
+  columns=4,
+  colspacing=0.2cm,
+  linewidth=0.2pt,
+  bgColorOne=unibagrayV,
+  bgColorTwo=unibaredIII,
+  headerheight=0.12\textheight,
+  footerheight=0.02\textheight,
+  borderColor=unibagrayV,
+  headerColorOne=unibayellowII,
+  headerColorTwo=unibayellowIV,
+  headerFontColor=unibablueI,
+  headerborder=none,
+  headershape=roundedright,
+  headershade=shadetbinverse,%plain,%shadelr,
+  headerfont=\large\bf,
+  boxColorOne=white,
+  %boxpadding=1em,
+  %boxheaderheight=2em,
+  textborder=roundedleft,
+  %eyecatcher=false
+}
+{}
+% Title
+ {\Huge\textcolor{unibayellowI}{\textbf{\textsc{Title}}}\normalsize}
+ % Authors
+ {\LARGE\textcolor{unibagrayV}{\textbf{Author}}\normalsize\\[.5em]
+ {\Large\textcolor{unibagrayIV}{\textbf{Computer Networks Group, University of Bamberg, Germany}}\normalsize}}
+{\includegraphics[width=.07\linewidth]{images/logow}}
+{\textcolor{unibablueI}{\texttt{\url{http://www.uni-bamberg.de/ktr}}}}
+{\textcolor{unibablueI}{\textbf{University of Bamberg, Germany}}}
+{\textcolor{unibablueI}{\textbf{Email:} \texttt{Email}}}
+
+
+\begin{posterbox}[column=0, name=posterboxOne, height=auto]{Poster Box One}
+
+\end{posterbox}
+
+\begin{posterbox}[column=1, span=2,height=auto, name=posterboxTwo, boxpadding=1em]{Poster Box Two}
+
+\end{posterbox}
+
+\begin{posterbox}[column=0,span=2,below=auto,height=bottom, name=posterboxThree]{Poster Box Three}
+
+\end{posterbox}
+
+\begin{posterbox}[column=2,below=posterboxTwo, height=auto, name=posterboxFour]{Poster Box Four}
+
+\end{posterbox}
+
+\begin{posterbox}[column=2, height=bottom, below=posterboxFour, name=posterboxFive]{Poster Box Five}
+
+\end{posterbox}
+
+\begin{posterbox}[column=3, height=auto, name=posterboxSix]{Poster Box Six}
+
+\end{posterbox}
+
+\begin{posterbox}[column=3, below=posterboxSix, height=bottom]{References}
+%\renewcommand{\refname}{}
+\smaller
+\nocite{*}
+\bibliographystyle{abbrv}
+\renewcommand{\section}[2]{\vskip 0.05em}
+\bibliography{literature/bib}
+\end{posterbox}
+
+
+\end{poster}
+\end{document}
