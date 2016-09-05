@@ -12,45 +12,11 @@ hyperref={pdfpagelabels=false}]{baposter}
 
 \input{\meta/config/commands}
 
-% \usepackage[utf8]{inputenc}
-%
-% \usepackage[vlined]{algorithm2e}
-% \usepackage{times}
-% \usepackage{calc}
-% \usepackage{url}
-% \usepackage{graphicx}
-% \usepackage{amsmath}
-% \usepackage{amssymb}
-% \usepackage{relsize}
-% \usepackage{multirow}
-% \usepackage{booktabs}
-%
-% \usepackage{multicol}
-% \usepackage[T1]{fontenc}
-% \usepackage{ae}
-% \usepackage{caption}
-%
-% \usepackage{helvet}
-% \renewcommand\familydefault{phv}
-%
-% \usepackage{paralist}
-
 \setdefaultitem{\textcolor{unibablueI}{$\blacktriangleright$}}%
 {\textcolor{unibablueII}{$\triangleright$}}%
 {\textcolor{unibablueIII}{-}}{\textperiodcentered}
 
 \setdefaultenum{\color{unibablueI}I.}{\color{unibablueII}a)}{i.}{A.}
-
-\graphicspath{{images/}}
-
-
-\definecolor{BrickRed}{RGB}{147,1,28}
-\newcommand{\todo}[1]{%
-%\colorbox{BrickRed}{\textcolor{white}{\textbf{%
-#1%
-%}}}%
-}
-\usepackage{nicefrac}
 
 \newcommand{\colred}[1]{%
 \textcolor{nounibaredI}{\textbf{#1}}%
@@ -90,12 +56,13 @@ hyperref={pdfpagelabels=false}]{baposter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%                  Metainfo                                  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: Ausgliedern
 % Title
  {\Huge\textcolor{unibayellowI}{\textbf{\textsc{Title}}}\normalsize}
  % Authors
  {\LARGE\textcolor{unibagrayV}{\textbf{Author}}\normalsize\\[.5em]
  {\Large\textcolor{unibagrayIV}{\textbf{Computer Networks Group, University of Bamberg, Germany}}\normalsize}}
-{\includegraphics[width=.07\linewidth]{images/logow}}
+{\includegraphics[width=.07\linewidth]{logow}}
 {\textcolor{unibablueI}{\texttt{\url{http://www.uni-bamberg.de/ktr}}}}
 {\textcolor{unibablueI}{\textbf{University of Bamberg, Germany}}}
 {\textcolor{unibablueI}{\textbf{Email:} \texttt{Email}}}
@@ -105,7 +72,7 @@ hyperref={pdfpagelabels=false}]{baposter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{posterbox}[column=0, name=posterboxOne, height=auto]{Poster Box One}
-
+\todo[inline]{Test}
 \end{posterbox}
 
 \begin{posterbox}[column=1, span=2,height=auto, name=posterboxTwo, boxpadding=1em]{Poster Box Two}
@@ -134,11 +101,11 @@ hyperref={pdfpagelabels=false}]{baposter}
 
 \begin{posterbox}[column=3, below=posterboxSix, height=bottom]{References}
 %\renewcommand{\refname}{}
-\smaller
+\small
 \nocite{*}
 \bibliographystyle{abbrv}
 \renewcommand{\section}[2]{\vskip 0.05em}
-\bibliography{literature/bib}
+\bibliography{\meta/exampleLiterature/bib}
 \end{posterbox}
 
 
