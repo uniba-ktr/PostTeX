@@ -12,18 +12,18 @@ metaurl := "https://github.com/uniba-ktr/TeXMeta.git"
 MAKE_FILE := $(meta)/Makefile
 
 ifeq ($(wildcard $(MAKE_FILE)),)
-$(make gitmodules)
+.DEFAULT_GOAL := gitmodules
 else
 include $(MAKE_FILE)
 endif
-
-# Call initialize to setup the infrastructure
-initialize:
-	@test -f .prepared || rm -rf .git .gitmodules meta
-	@test -f .prepared || ( cd $(base) && ( test -d .git || git init ) )
 
 # Internal Targets
 gitmodules: initialize
 	@test -d $(meta) || git submodule add $(metaurl) $(meta)
 	@git submodule update --init $(meta)
 	@( git add $(meta) && git commit -m "Update meta" ) || true
+	@make prepare
+
+initialize:
+	@test -f .prepared || rm -rf .git .gitmodules meta
+	@test -f .prepared || ( cd $(base) && ( test -d .git || git init ) )
