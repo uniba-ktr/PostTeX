@@ -8,10 +8,12 @@ main := poster
 classes := baposter.cls
 
 MAKE_FILE := $(meta)/Makefile
-include $(MAKE_FILE)
 
 ifeq ($(wildcard $(MAKE_FILE)),)
-initialize
+$(make initialize)
+else
+include $(MAKE_FILE)
+$(make prepare)
 endif
 
 # Call initialize to setup the infrastructure
