@@ -9,3 +9,18 @@ classes := baposter.cls
 
 MAKE_FILE := $(meta)/Makefile
 include $(MAKE_FILE)
+
+ifeq ($(wildcard $(MAKE_FILE)),)
+initialize
+endif
+
+# Call initialize to setup the infrastructure
+initialize: gitmodules
+	@test -f .prepared || rm -rf .git .gitmodules meta
+	@test -f .prepared || ( cd $(base) && ( test -d .git || git init ) )
+
+# Internal Targets
+gitmodules:
+	@test -d $(meta) || git submodule add $(metaurl) $(meta)
+	@git submodule update --init $(meta)
+	@( git add $(meta) && git commit -m "Update meta" ) || true
