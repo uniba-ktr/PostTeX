@@ -25,3 +25,4 @@
 *.gin
 # Do not initialize twice
 .prepared
+packages.txt
