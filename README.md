@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/uniba-ktr/PostTeX.svg?branch=master)](https://travis-ci.com/uniba-ktr/PostTeX.svg)
+
 # PostTeX
 
 A LaTeX Beamer template for posters.
