@@ -26,6 +26,27 @@ hyperref={pdfpagelabels=false}]{baposter}
 \textcolor{unibablueI}{#1}%
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Glossary entries    %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newacronym{ieee}{IEEE}{Institute of Electrical and Electronics Engineers}
+
+\newglossaryentry{latex}
+{
+        name=latex,
+        description={Is a mark up language specially suited for scientific documents}
+}
+
+\newglossaryentry{symb:Pi}
+{
+        name=\ensuremath{\pi},
+        description={Geometrical value},
+        type=symbolslist
+}
+
+\lstset{language=TeX}
+
 \begin{document}
 
 \begin{poster}{
@@ -71,28 +92,79 @@ hyperref={pdfpagelabels=false}]{baposter}
 %%%%                  Content                                   %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{posterbox}[column=0, name=posterboxOne, height=auto]{Poster Box One}
-\todo[inline]{Test}
+\begin{posterbox}[column=0, name=posterboxOne, height=auto]{Integration von Bildern}
+Bilder befinden sich im Image-Ordner und lassen sich mit \lstinline|\image{Breite}{Datei im Image-Verzeichnis}{Beschriftung}{Label}| einbinden.
+\image{3cm}{logo.png}{Uni-Logo}{img:uni}
+Die Referenzierung erfolgt mittels \lstinline|\autoref{Label}|, also z.B. in Abbildung \ref{img:uni}.
 \end{posterbox}
 
-\begin{posterbox}[column=1, span=2,height=auto, name=posterboxTwo, boxpadding=1em]{Poster Box Two}
-
+\begin{posterbox}[column=1, span=2,height=auto, name=posterboxTwo, boxpadding=1em]{Git Versionierung}
+\begin{itemize}
+\item \#: \gitAbbrevHash
+\item @: \gitAuthorIsoDate
+\item \gitReferences
+\end{itemize}
+\textbf{Setup}\\
+Follow this link to \url{https://www.ctan.org/tex-archive/macros/latex/contrib/gitinfo2}\\
+\textbf{git hooks}\\
+  To fill watermark at buttom, deploy gitinfo2-hook.txt to githooks: (copy and make executable) or use \texttt{make git}
+  \begin{itemize}
+      \item .git/hooks/post-checkout
+      \item .git/hooks/post-commit
+      \item .git/hooks/post-merge
+  \end{itemize}
+  \textbf{Remove watermark}\\
+  To disable watermark, remove option \texttt{[mark]} from \textbackslash usepackage[mark]\{gitinfo2\} in \textit{config/commands.tex}.
 \end{posterbox}
 
-\begin{posterbox}[column=0,span=2,below=auto,height=bottom, name=posterboxThree]{Poster Box Three}
+\begin{posterbox}[column=0,span=2,below=auto,height=bottom, name=posterboxThree]{Grafiken mit TikZ}
+Grafiken im TikZ-Framework\footnote{\url{http://www.tn-home.de/TUGDD/Stuff/TikZ_final.pdf}} lassen sich mit dem Befehl \lstinline|\scaletikzimage{Datei im Image Verzeichnis}{Beschriftung}{Label}{Skalierungsfaktor}| einbinden. \scaletikzimage{tikz}{TikZ-Grafik}{img:tikz}{0.9}
 
+Grafiken mit Netzwerksymbolen können einfach mit moeptikz\footnote{\url{https://github.com/moepinet/moeptikz}} erstellt und mit \lstinline|\scaletikzimage{}{}{}| eingebunden werden:
+\scaletikzimage{network}{Example Network}{img:topo}{0.9}
+
+UML basierte Grafiken können einfach mit tikz-uml\footnote{\url{https://perso.ensta-paris.fr/~kielbasi/tikzuml/index.php}} erstellt werden und mit \lstinline|\scaletikzimage{}{}{}| eingebunden werden:
+\scaletikzimage{sequence}{Example Sequence}{img:seq}{0.9}
 \end{posterbox}
 
-\begin{posterbox}[column=2,below=posterboxTwo, height=auto, name=posterboxFour]{Poster Box Four}
+\begin{posterbox}[column=2,below=posterboxTwo, height=auto, name=posterboxFour]{Tabellen}
+Tabellen, siehe Tabelle \ref{lst:table}, lassen sich mit dem Environment \lstinline|longtable| definieren\footnote{\url{ftp://ftp.dante.de/pub/tex/macros/latex/required/tools/longtable.pdf}}.
 
+\begin{lstlisting}[caption=Tabelle, language=TeX, label=lst:table]
+\begin{longtable}[H h t b c]{Spaltendefinitionen} \\
+Zelle 1 & Zelle 2 & ... & Zelle n \\
+... \\
+Zelle x & Zelle y & ... & Zelle z \\
+\caption{Tabellenunterschrift}
+\label{Label}
+\end{longtable}
+\end{lstlisting}
+
+\begin{longtable}[H]{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}
+\hline
+Zelle 1 & Zelle 2 & Zelle n \\
+\hline
+Zelle x & Zelle y & Zelle z \\
+\hline
+\caption{Tabelle 1}
+\label{tab:tab1}
+\end{longtable}
 \end{posterbox}
 
-\begin{posterbox}[column=2, height=bottom, below=posterboxFour, name=posterboxFive]{Poster Box Five}
-
+\begin{posterbox}[column=2, height=bottom, below=posterboxFour, name=posterboxFive]{Abkürzungen}
+Abkürzungen können mit \lstinline|\newacronym{ieee}{IEEE}{Institute of Electrical and Electronics Engineers}| angegeben werden. Diese werden alphabetisch sortiert in ein Abkürzungsverzeichnis aufgenommen und im Text z.B. mit \lstinline|\gls{ieee}| referenziert, dies führt bei Verwendung zu \gls{ieee}.
 \end{posterbox}
 
-\begin{posterbox}[column=3, height=auto, name=posterboxSix]{Poster Box Six}
+\begin{posterbox}[column=3, height=auto, name=posterboxSix]{Code Ausschnitte}
+Pseudo-Code Ausschnitte lassen sich mit \lstinline|pseudo{Name des Algorithmus}{Label}{Datei im Code-Verzeichnis}| einbinden.
+\pseudo{Mittelwert}{lst:mean}{code}
 
+Code Ausschnitte lassen sich einfach mit listings verwenden z.B. in der Umgebung \lstinline|\begin{lstlisting} ... \end{lstlisting}|, wie in Code Ausschnitt \ref{lst:python} gezeigt.
+
+\begin{lstlisting}[language=Python, caption={Simple Python program}, label=lst:python]
+def my_function():
+  print("Hello from a function")
+\end{lstlisting}
 \end{posterbox}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
